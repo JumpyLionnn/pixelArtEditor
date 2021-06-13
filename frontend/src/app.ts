@@ -8,15 +8,13 @@ class App {
     private _isDown: boolean = false;
     private _lastPosition: Vector2 | null = null;
     constructor() {
-        this.drawingCanvas = new DrawingCanvas(48, 48, 16);
+        this.drawingCanvas = new DrawingCanvas(32, 32, 16);
         window.addEventListener("resize", this.resize.bind(this));
         window.addEventListener("mousedown", this.mouseDown.bind(this));
         window.addEventListener("mouseup", this.mouseUp.bind(this));
 
         canvas.addEventListener("mousemove", this.mouseMove.bind(this));
         canvas.addEventListener("click", this.click.bind(this));
-
-        //this.drawingCanvas.drawPixelLine(new Vector2(1,1), new Vector2(1,8));
     }
 
     private mouseUp() {
@@ -39,7 +37,6 @@ class App {
             let rect = this.drawingCanvas.getBoundingClientRect();
             let position = canvas.convertCoordinates(e.clientX - rect.left, e.clientY - rect.top);
             if(mode === DrawingAction.draw)
-                //this.drawingCanvas.drawPixel(position);
                 if(this._lastPosition === null){
                     this.drawingCanvas.drawPixel(position);
                 }
