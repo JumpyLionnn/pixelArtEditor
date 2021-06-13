@@ -6,14 +6,11 @@ const canvas = new DrawingCanvas(32, 32, 16);
 
 let isDown = false;
 
-let mode = DrawingMode.draw;
+let mode = DrawingAction.draw;
 let drawingColor = "black";
 
-/*
-window.onbeforeunload = () => {
-    return "Are you sure you want to leave?";
-}
-*/
+const app = new App();
+
 const palette = new ColorPalette();
 let lastPosition = new Vector2();
 
@@ -45,50 +42,22 @@ palette.addEventListener("click", (e) => {
     palette.drawSelector(lastPosition);
 });
 
-canvas.addEventListener("mousemove", (e) => {
-    if(isDown){
-        let rect = canvas.getBoundingClientRect();
-        let position = canvas.convertCoordinates(e.clientX - rect.left, e.clientY - rect.top);
-        if(mode === DrawingMode.draw)
-            canvas.drawPixel(position);
-        else if(mode === DrawingMode.erease){
-            canvas.clearPixel(position);
-        }
-    }
-});
-
-window.addEventListener("mousedown", () => {
-    isDown = true;
-});
-
-window.addEventListener("mouseup", () => {
-    isDown = false;
-});
+window.addEventListener("mousedown", () => isDown = true);
+window.addEventListener("mouseup", () => isDown = false);
 
 (document.getElementById("pencil-button") as HTMLButtonElement).addEventListener("click", () => {
-    mode = DrawingMode.draw;
+    app.currentAction = DrawingAction.draw;
 });
 
 (document.getElementById("ereaser-button") as HTMLButtonElement).addEventListener("click", () => {
-    mode = DrawingMode.erease;
+    app.currentAction = DrawingAction.erease;
 });
 
 (document.querySelectorAll("button#color-selector") as NodeListOf<HTMLButtonElement>).forEach((button) => {
     let color = button.dataset["color"] as string;
     button.style.backgroundColor = color;
     button.addEventListener("click", () => {
-        canvas.color(color);
-        color = drawingColor;
+        app.color = Color.hexToRgb(color) as Color;
     });
 });
 
-window.addEventListener("resize", () => {
-    canvas.resize();
-    palette.resize();
-});
-
-canvas.addEventListener("wheel", (e) => {
-    if(e.ctrlKey){
-        e.preventDefault();
-    }
-});

@@ -51,13 +51,11 @@ body {
 
 #colors {
     height: fit-content;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: .5rem;
 }
 
 #color-selector {
-    aspect-ratio: 1;
+    width: 1.8rem;
+    height: 1.8rem;
     border: 1px solid black;
 }
 

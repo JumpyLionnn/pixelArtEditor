@@ -1,4 +1,4 @@
-enum DrawingMode{
+enum DrawingAction{
     draw,
     erease
 }

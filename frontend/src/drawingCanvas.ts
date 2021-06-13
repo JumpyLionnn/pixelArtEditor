@@ -37,8 +37,30 @@ class DrawingCanvas extends BasicCanvas {
         this.clearRect(position.x, position.y, 1, 1);
     }
 
-    public color(color: string){
-        this.ctx.fillStyle = color;
+    public drawPixelLine(position1: Vector2, position2: Vector2): void{ 
+        let xLine = Math.abs(position2.x - position1.x);
+        let yLine = Math.abs(position2.y - position1.y);
+        
+        if(yLine > xLine){  
+            let ratio = yLine / xLine;
+            // every time I am moving <ratio> times to the y axis I need to move 1 in the x
+            for (let i = 0; i < yLine; i++) {
+                let xSize = Math.floor(i / ratio);
+                this.drawPixel(new Vector2(position1.x + xSize, position1.y + i));
+            }
+        }
+        else{
+            let ratio = xLine / yLine;
+            // every time I am moving <ratio> times to the x axis I need to move 1 in the y
+            for (let i = 0; i < xLine; i++) {
+                let ySize = Math.floor(i / ratio);
+                this.drawPixel(new Vector2(position1.x + i, position1.y + ySize));
+            }
+        }
+    }
+
+    public color(color: Color){
+        this.ctx.fillStyle = color.toString();
     }
 
     public convertCoordinates(x: number, y: number): Vector2{
