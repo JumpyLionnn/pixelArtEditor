@@ -5,7 +5,7 @@
     "main": "backend/out/index.js",
     "scripts": {
         "test": "nodemon backend/out/index.js",
-        "build": "tsc --project backend/tsconfig.json --project frontend/tsconfig.json",
+        "build": "tsc --project backend/tsconfig.json && tsc --project frontend/tsconfig.json",
         "start": "node backend/out/index.js"
     },
     "repository": {
