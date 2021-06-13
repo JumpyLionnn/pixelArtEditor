@@ -11,7 +11,53 @@
 </head>
 
 <body>
-    <canvas id="canvas" width="32" , height="32"></canvas>
+    <div id="menu">
+        <!--
+            file
+            edit
+            view
+            help
+            ...
+        -->
+        <div id="file-menu-button" class="menu-button">
+            <br>
+        </div>
+    </div>
+    <div id="tabs">
+        <!--
+            tabs for files you edit
+        -->
+    </div>
+    <div id="tools">
+        <button id="ereaser-button">Ereaser</button>
+        <button id="pencil-button">Pencil</button>
+    </div>
+    <div id="main-editor">
+
+        <div id="color-selection-menu" class="editor-section">
+            <div id="colors">
+                <button id="color-selector" data-color="black"></button>
+                <button id="color-selector" data-color="white"></button>
+                <button id="color-selector" data-color="red"></button>
+                <button id="color-selector" data-color="green"></button>
+                <button id="color-selector" data-color="blue"></button>
+            </div>
+            <div id="color-picker">
+                <canvas width="0" height="180" id="color-palette">
+                </canvas>
+                <div>
+                    <input type="range" name="hue" min="0" max="360" id="color-picker-hue">
+                </div>
+            </div>
+        </div>
+        <div id="layer-menu"></div>
+        <div id="main-drawing-canvas">
+            <div id="streched-canvas-container">
+                <canvas id="drawing-canvas"></canvas>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
